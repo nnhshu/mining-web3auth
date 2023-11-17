@@ -16,7 +16,10 @@ import { connectors } from "./utils/connectors";
 import { Web3Auth } from "@web3auth/modal";
 import { CHAIN_NAMESPACES } from "@web3auth/base";
 
+import RPC from "./web3RPC";
+
 const clientId = "BJNCzp-3TDsYxLdbZYd58Vw-o2e9W7JRrYKStDfh3BsDgHQeC-1k4pMgsbLLI32VSwhPms06VkamtVondrEp3u8"; // get from https://dashboard.web3auth.io
+//const clientId = "BI_9prQoj6wEAm4vnMPVbTD8p4P79IQJeHzxAtNeuqv5XlqXjW3abs12JZYeoLwhfy3FbaJV042G5dGXYsB4jzQ"
 
 const App = () => {
 
@@ -34,6 +37,8 @@ const App = () => {
     const [signedMessage, setSignedMessage] = useState("");
     const [verified, setVerified] = useState();
 
+    const [loggedIn, setLoggedIn] = useState(false);
+
     const refreshState = () => {
         window.localStorage.setItem("provider", undefined);
         setNetwork("");
@@ -50,6 +55,7 @@ const App = () => {
         const web3authProvider = await web3auth.connect();
         console.log(web3authProvider)
         setProvider(web3authProvider);
+        setLoggedIn(true);
     };
 
     const logout = async () => {
@@ -63,6 +69,18 @@ const App = () => {
         setAddress("");
         setUserData({});
         setChainId("");
+        setLoggedIn(false);
+    };
+
+    const getAccounts = async () => {
+        if (!provider) {
+            console.log("provider not initialized yet");
+            return;
+        }
+        const rpc = new RPC(provider);
+        const address = await rpc.getAccounts();
+        setAddress(address);
+        console.log(address);
     };
 
     useEffect(() => {
@@ -83,17 +101,25 @@ const App = () => {
                         tickerName: "BNB",
                     },
                     uiConfig: {
-                        theme: "dark",
-                        loginMethodsOrder: ["facebook", "google"],
+                        appName: "BEPMINING",
+                        theme: "light",
+                      //  loginMethodsOrder: ["facebook", "google"],
+                      primaryButton: "externalLogin",
+                        logoLight: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
+                        logoDark: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
                     },
                     defaultLanguage: "en",
 
-                    modalZIndex: "99998",
+                  //  modalZIndex: "99998",
                 });
 
                 setWeb3auth(web3auth);
                 await web3auth.initModal();
                 setProvider(web3auth.provider);
+                if (web3auth.connected) {
+                    console.log("hhsdas")
+                    setLoggedIn(true);
+                }
             } catch (error) {
                 console.error(error);
             }
@@ -105,7 +131,15 @@ const App = () => {
 
     return (
         <Routes>
-            <Route path="*" element={<DashboardLayout login={() => login()} logout={() => logout()} />} />
+            <Route path="*"
+                element={<DashboardLayout
+                    login={() => login()}
+                    logout={() => logout()}
+                    getAccounts={() => getAccounts()}
+                    web3auth={web3auth}
+                    loggedIn={loggedIn}
+                />}
+            />
         </Routes>
     );
 }

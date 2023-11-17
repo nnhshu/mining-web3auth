@@ -63,7 +63,7 @@ const Wrapper = styled.section`
     }
 `
 
-const DashboardLayout = ({ children, login, logout, ...rest }) => {
+const DashboardLayout = ({ children, web3auth, getAccounts, loggedIn, login, logout, ...rest }) => {
 
     let location = useLocation();
 
@@ -79,10 +79,10 @@ const DashboardLayout = ({ children, login, logout, ...rest }) => {
 
     const handleClickOutside = (e) => {
         if (!myRef.current.contains(e.target)) {
-            return true; 
+            return true;
         } else {
             setCollapsed(true);
-            
+
         }
     };
 
@@ -100,9 +100,9 @@ const DashboardLayout = ({ children, login, logout, ...rest }) => {
 
     useEffect(() => {
 
-        if(hasWindow < 480){
+        if (hasWindow < 480) {
             setCollapsed(true);
-        } else{
+        } else {
             setCollapsed(false);
         }
 
@@ -125,6 +125,7 @@ const DashboardLayout = ({ children, login, logout, ...rest }) => {
             }
         }
     }, [windowDimensions]);
+   
 
     return (
         <React.Fragment>
@@ -134,9 +135,12 @@ const DashboardLayout = ({ children, login, logout, ...rest }) => {
                         collapsed={collapsed}
                         openLeftMenuCallBack={openMenu}
                         logout={() => logout()}
-                        login={() =>login()}
+                        login={() => login()}
                         defaultTheme={theme}
                         hideWallet={false}
+                        web3auth={web3auth}
+                        getAccounts={getAccounts}
+                        loggedIn={loggedIn}
                     />
                     <Layout className="layout-full-height">
                         <Sidebar collapsed={collapsed} hideMenu={false} />

@@ -235,6 +235,7 @@ const HeaderPage = (props) => {
         return check;
     };
 
+
     return (
         <>
             <Header
@@ -266,7 +267,7 @@ const HeaderPage = (props) => {
                             <Socials tw="https://twitter.com/BepMining" discord="#" telegram="https://t.me/bepming_channel"></Socials>
                         </div>
                         {
-                            props.hideWallet === false ?
+                            props.loggedIn === false ?
                                 <div className="header-group">
                                     <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.login}>
                                         <img src={Metamask_Icon} alt="" />
@@ -274,7 +275,20 @@ const HeaderPage = (props) => {
                                     </Button>
                                 </div>
                                 :
-                                ""
+                                <>
+                                    < div className="header-group">
+                                        <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.getAccounts}>
+                                            <img src={Metamask_Icon} alt="" />
+                                            <span>GET ACCOUNT</span>
+                                        </Button>
+                                    </div>
+                                    <div className="header-group">
+                                        <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.logout}>
+                                            <img src={Metamask_Icon} alt="" />
+                                            <span>LOG OUT</span>
+                                        </Button>
+                                    </div>
+                                </>
                         }
                     </div>
                 </div>
@@ -295,7 +309,7 @@ const HeaderPage = (props) => {
             >
                 <div className="account-wallet-wrap">
                     <span className="text-white">Your address</span>
-                    
+
                     <div className="box-view tetx-center text-primary">
                         View on <a>https://bscscan.com</a>
                     </div>
