@@ -1,0 +1,31 @@
+.linear_text {
+    background: rgb(248 164 26);
+    background: -moz-linear-gradient(-45deg,
+            rgba(2, 172, 175, 1) 0%,
+            rgba(142, 255, 55, 1) 100%);
+    background: -webkit-gradient(left top,
+            right bottom,
+            color-stop(0%, rgba(2, 172, 175, 1)),
+            color-stop(100%, rgba(142, 255, 55, 1)));
+    background: -webkit-linear-gradient(-45deg,
+            rgba(2, 172, 175, 1) 0%,
+            rgba(142, 255, 55, 1) 100%);
+    background: -o-linear-gradient(-45deg,
+            rgba(2, 172, 175, 1) 0%,
+            rgba(142, 255, 55, 1) 100%);
+    background: -ms-linear-gradient(-45deg,
+            rgba(2, 172, 175, 1) 0%,
+            rgba(142, 255, 55, 1) 100%);
+    /* background: linear-gradient(135deg,
+        rgba(2, 172, 175, 1) 0%,
+        rgba(142, 255, 55, 1) 100%); */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#02acaf', endColorstr='#8eff37', GradientType=1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+}
+
+.linear_bg {
+    background: linear-gradient(135deg, rgb(248 164 26) 0%, rgb(255 255 255) 100%);
+}
