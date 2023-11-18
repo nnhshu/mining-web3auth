@@ -102,16 +102,19 @@ const App = () => {
                     },
                     uiConfig: {
                         appName: "BEPMINING",
-                        theme: "light",
-                      //  loginMethodsOrder: ["facebook", "google"],
-                      primaryButton: "externalLogin",
+                        theme: "dark",
+                        //  loginMethodsOrder: ["facebook", "google"],
+                        //  primaryButton: "externalLogin",
+                        loginMethodsOrder : ["google", "facebook",],
                         logoLight: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
                         logoDark: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
                     },
                     defaultLanguage: "en",
-
-                  //  modalZIndex: "99998",
+                    loginGridCol: 2,
+                    //  modalZIndex: "99998",
                 });
+
+
 
                 setWeb3auth(web3auth);
                 await web3auth.initModal();
