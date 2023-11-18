@@ -22,7 +22,8 @@ import {
     FiAlignRight,
     FiAlignLeft,
     FiLogOut,
-    FiCopy
+    FiCopy,
+    FiInfo
 } from "react-icons/fi";
 
 import {
@@ -270,21 +271,18 @@ const HeaderPage = (props) => {
                             props.loggedIn === false ?
                                 <div className="header-group">
                                     <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.login}>
-                                        <img src={Metamask_Icon} alt="" />
-                                        <span>Sign in</span>
+                                        <span>Sign in to Dashboard</span>
                                     </Button>
                                 </div>
                                 :
                                 <>
                                     < div className="header-group">
                                         <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.getAccounts}>
-                                            <img src={Metamask_Icon} alt="" />
+                                            <FiInfo />
                                             <span>GET ACCOUNT</span>
                                         </Button>
-                                    </div>
-                                    <div className="header-group">
                                         <Button className="btn-connect__network btn-mobile" type="primary" shape="round" size={size} onClick={props.logout}>
-                                            <img src={Metamask_Icon} alt="" />
+                                            <FiLogOut />
                                             <span>LOG OUT</span>
                                         </Button>
                                     </div>

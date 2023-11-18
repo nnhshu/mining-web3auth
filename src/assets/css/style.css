@@ -1014,3 +1014,7 @@ hr {
 	}
 
 }
+
+.w3a-parent-container #w3a-modal .w3a-button--login{
+	height: 3.5rem !important;
+}

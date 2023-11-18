@@ -104,14 +104,14 @@ const App = () => {
                         appName: "BEPMINING",
                         theme: "dark",
                         //  loginMethodsOrder: ["facebook", "google"],
-                        //  primaryButton: "externalLogin",
+                        // primaryButton: "externalLogin",
                         loginMethodsOrder : ["google", "facebook",],
                         logoLight: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
                         logoDark: "http://localhost:3000/static/media/logo2.7b328f64a36af5fed146.png",
+                        defaultLanguage: "en",
+                        loginGridCol: 2,
                     },
-                    defaultLanguage: "en",
-                    loginGridCol: 2,
-                    //  modalZIndex: "99998",
+                    
                 });
 
 
